@@ -44,7 +44,8 @@ public class Wheel extends Circle {
         str += String.format("xPos: %.2f, yPos: %.2f\n", xPos, yPos);
         str += String.format("Radius: %.2f\n", radius);
         str += String.format("Area: %.2f\n", super.area());
-        str += String.format("Spokes: ", spokes);
+        str += String.format("Perimeter: %.2f\n", perimeter());
+        str += String.format("Spokes: " + spokes);
         return str;
     }
 }

@@ -63,7 +63,8 @@ public class Rect extends Shape {
         String str = "RECTANGLE\n==========\n";
         str += String.format("XPos: %.2f, YPos %.2f\n",xPos, yPos);
         str += String.format("Width: %.2f, Height: %.2f\n", width, height);
-        str += String.format("Area %.2f", area());
+        str += String.format("Area: %.2f\n", area());
+        str += String.format("Perimeter: %.2f\n", perimeter());
         return str;
     }
     

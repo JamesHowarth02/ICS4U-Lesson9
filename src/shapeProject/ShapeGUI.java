@@ -245,7 +245,6 @@ public class ShapeGUI extends javax.swing.JFrame {
         erase();
         double x = Double.parseDouble(JOptionPane.showInputDialog(this, "Enter new x", "0"));
         double y = Double.parseDouble(JOptionPane.showInputDialog(this, "Enter new Y", "0"));
-        System.out.println(x + " " + y);
         shape.move(x, y);
         shape.draw(pen);
         outputArea.setText(shape.toString());
@@ -260,15 +259,16 @@ public class ShapeGUI extends javax.swing.JFrame {
 
     private void btnRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectangleActionPerformed
         erase();
-        shape = new Rect(0, 50, 50, 100);
+        shape = new Rect(-50, 50, 50, 100);
         shape.draw(pen);
         outputArea.setText(shape.toString());
     }//GEN-LAST:event_btnRectangleActionPerformed
 
     private void btnTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriangleActionPerformed
         erase();
-        shape = new Triangle(0, 0, 0);
+        shape = new Triangle(-50, 0, 50);
         shape.draw(pen);
+        outputArea.setText(shape.toString());
     }//GEN-LAST:event_btnTriangleActionPerformed
 
     private void btnResizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResizeActionPerformed

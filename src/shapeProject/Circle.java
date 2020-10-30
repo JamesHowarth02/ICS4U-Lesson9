@@ -69,7 +69,8 @@ public class Circle extends Shape{
         String str = "CIRCLE: \n========\n";
         str += String.format("xPos: %.2f, yPos %.2f\n",xPos, yPos);
         str += String.format("Radius: %.2f\n", radius);
-        str += String.format("Area: %.2f", area());
+        str += String.format("Area: %.2f\n", area());
+        str += String.format("Perimeter: %.2f\n", perimeter());
         return str;
     }
     
