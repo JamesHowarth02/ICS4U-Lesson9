@@ -8,6 +8,7 @@ import TurtleGraphics.Pen;
 import TurtleGraphics.SketchPadWindow;
 import TurtleGraphics.StandardPen;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,7 +51,6 @@ public class ShapeGUI extends javax.swing.JFrame {
         btnMove = new javax.swing.JButton();
         btnResize = new javax.swing.JButton();
         btnQuit = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputArea = new javax.swing.JTextArea();
         detailLabel = new javax.swing.JLabel();
@@ -135,6 +135,11 @@ public class ShapeGUI extends javax.swing.JFrame {
         });
 
         btnResize.setText("Resize");
+        btnResize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResizeActionPerformed(evt);
+            }
+        });
 
         btnQuit.setText("Quit");
         btnQuit.addActionListener(new java.awt.event.ActionListener() {
@@ -149,8 +154,7 @@ public class ShapeGUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSeparator1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnResize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
@@ -168,9 +172,7 @@ public class ShapeGUI extends javax.swing.JFrame {
                 .addComponent(btnResize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnQuit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         outputArea.setColumns(20);
@@ -206,12 +208,10 @@ public class ShapeGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(optionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(detailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(detailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(optionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -243,7 +243,10 @@ public class ShapeGUI extends javax.swing.JFrame {
 
     private void btnMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveActionPerformed
         erase();
-        shape.move(100, 100);
+        double x = Double.parseDouble(JOptionPane.showInputDialog(this, "Enter new x", "0"));
+        double y = Double.parseDouble(JOptionPane.showInputDialog(this, "Enter new Y", "0"));
+        System.out.println(x + " " + y);
+        shape.move(x, y);
         shape.draw(pen);
         outputArea.setText(shape.toString());
     }//GEN-LAST:event_btnMoveActionPerformed
@@ -264,9 +267,17 @@ public class ShapeGUI extends javax.swing.JFrame {
 
     private void btnTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriangleActionPerformed
         erase();
-        shape = new Triangle();
+        shape = new Triangle(0, 0, 0);
         shape.draw(pen);
     }//GEN-LAST:event_btnTriangleActionPerformed
+
+    private void btnResizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResizeActionPerformed
+        erase();
+        double factor = Double.parseDouble(JOptionPane.showInputDialog(this, "Enter stretchBy factor:", "0"));
+        shape.stretchBy(factor);
+        shape.draw(pen);
+        outputArea.setText(shape.toString());
+    }//GEN-LAST:event_btnResizeActionPerformed
 
     //@param args the command line arguments
     public static void main(String args[]) {
@@ -311,7 +322,6 @@ public class ShapeGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel optionLabel;
     private javax.swing.JTextArea outputArea;
     private javax.swing.JLabel selectShapeLabel;

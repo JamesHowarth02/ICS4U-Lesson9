@@ -20,9 +20,9 @@ abstract public class Shape { // cant make direct objects from shape class.
         yPos = 0;
     }
 
-    public Shape(double xPos, double yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Shape(double xPosN, double yPosN) {
+        xPos = xPosN;
+        yPos = yPosN;
     }
 
     // all shapes have area but its different for each
@@ -34,16 +34,16 @@ abstract public class Shape { // cant make direct objects from shape class.
     // these methods are identical in all shapes, therefore we can provide code here.
     
     final public double getXPos() {
-        return this.xPos;
+        return xPos;
     }
 
     final public double getYPos() {
-        return this.yPos;
+        return yPos;
     }
     
     public void move(double xLoc, double yLoc) {
-        this.xPos = xLoc;
-        this.yPos = yLoc;
+        xPos = xLoc;
+        yPos = yLoc;
     }
 
     abstract public void stretchBy(double factor);
